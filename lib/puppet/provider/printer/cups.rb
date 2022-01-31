@@ -236,6 +236,7 @@ Puppet::Type.type(:printer).provide :cups, :parent => Puppet::Provider do
     begin
       debug "Fetching queue PPD options for #{destination}"
       output = lpoptions '-p', destination, '-l'
+      debug "Got this from lpoptions: #{output}"
 
       output.each_line.inject({}) do |hash, line|
         kv = line.split(':')
