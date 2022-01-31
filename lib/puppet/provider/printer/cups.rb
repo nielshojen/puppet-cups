@@ -146,7 +146,7 @@ Puppet::Type.type(:printer).provide :cups, :parent => Puppet::Provider do
         printer[:page_size] = vendor_options['PageSize'] if vendor_options.has_key? 'PageSize'
         printer[:input_tray] = vendor_options['InputSlot'] if vendor_options.has_key? 'InputSlot'
         printer[:duplex] = vendor_options['Duplex'] if vendor_options.has_key? 'Duplex'
-        printer[:color_model] = vendor_options['ColorModel'] if vendor_options.has_key? 'ColorModel'
+        # printer[:color_model] = vendor_options['ColorModel'] if vendor_options.has_key? 'ColorModel'
 
         vendor_options.delete_if { |k, _| PPD_OPTION_PROPERTIES.include? k }
 
@@ -248,7 +248,7 @@ Puppet::Type.type(:printer).provide :cups, :parent => Puppet::Provider do
         hash
       end
     rescue
-      debug 'Failed to fetch PPD options for #{destination}, this may be normal behaviour depending on printer setup.'
+      debug "Failed to fetch PPD options for #{destination}, this may be normal behaviour depending on printer setup."
       {}
     end
   end
