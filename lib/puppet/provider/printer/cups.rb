@@ -236,15 +236,14 @@ Puppet::Type.type(:printer).provide :cups, :parent => Puppet::Provider do
     begin
       debug "Fetching queue PPD options for #{destination}"
       output = lpoptions '-p', destination, '-l'
-      debug "Got this from lpoptions: #{output}"
 
       output.each_line.inject({}) do |hash, line|
-        kv = line.split(':')
+        kv = line.gsub("::", ":").split(':')
         key = kv[0].split('/', 2)[0]
 
         selected_value = /\*(\S+)/.match(kv[1]).captures[0]
 
-        debug "Got: #{key} #{selected_value}"
+        debug "Got: #{key} - #{selected_value}"
 
         hash[key] = selected_value
         hash

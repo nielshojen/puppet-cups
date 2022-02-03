@@ -1,6 +1,6 @@
 # Configures various aspects of CUPS
 class cups::config {
-  if $::cups::cups_lpd_enable {    
+  if $::cups::cups_lpd_enable {
     xinetd::service { 'cups-lpd' :
       ensure       => 'present',
       service_name => 'printer',
@@ -11,7 +11,7 @@ class cups::config {
       wait         => 'no',
       user         => 'lp',
       group        => 'sys',
-      server       => '/usr/lib/cups/daemon/cups-lpd',  
+      server       => '/usr/lib/cups/daemon/cups-lpd',
     }
   }
 }

@@ -2,10 +2,10 @@
 node default {
 
     # Test bug where single quote caused location string to fail
-    printer { "Printer_A":
+    printer { 'Printer_A':
         ensure       => present,
-        uri          => "http://localhost",
-        description  => "This is the printer descriptionx",
+        uri          => 'http://localhost',
+        description  => 'This is the printer description',
         location     => "John's office",
         model        => 'drv:///sample.drv/generic.ppd',
         shared       => false,
