@@ -244,6 +244,8 @@ Puppet::Type.type(:printer).provide :cups, :parent => Puppet::Provider do
 
         selected_value = /\*(\S+)/.match(kv[1]).captures[0]
 
+        debug "Got: #{key} #{selected_value}"
+
         hash[key] = selected_value
         hash
       end
